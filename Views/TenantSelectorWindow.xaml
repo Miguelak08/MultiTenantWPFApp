@@ -1,0 +1,39 @@
+<Window x:Class="MultiTenantApp.Views.TenantSelectorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Seleccionar Empresa"
+        Height="300"
+        Width="400"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Background="White">
+    <Grid Margin="20">
+        <StackPanel VerticalAlignment="Center" Spacing="15">
+            <TextBlock Text="Selecciona una empresa:" 
+                       FontSize="16" 
+                       FontWeight="Bold"
+                       Margin="0,0,0,10"/>
+
+            <ItemsControl ItemsSource="{Binding Tenants}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Command="{Binding DataContext.SelectTenantCommand, 
+                                        RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding TenantId}"
+                                Padding="15"
+                                Margin="0,5"
+                                Background="{StaticResource PrimaryColor}"
+                                Foreground="White"
+                                Height="50"
+                                Cursor="Hand">
+                            <TextBlock Text="{Binding TenantName}" 
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</Window>
